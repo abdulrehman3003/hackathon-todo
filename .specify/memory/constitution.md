@@ -1,55 +1,82 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: none -> 1.0.0
+- Added Principles:
+  - System Behavior: Specs as Source of Truth
+  - System Behavior: Code Evolution via Specs
+  - System Behavior: Dedicated Feature Specs
+  - Architecture: Code Organization
+  - Architecture: Clean Architecture
+  - Architecture: In-Memory Storage
+  - Architecture: Python Console Application
+- Added Sections:
+  - Core Rule
+  - Purpose
+  - AI Agent Instructions
+  - Project Structure (Required)
+- Removed Sections: None
+- Templates requiring updates:
+  - [ ] .specify/templates/plan-template.md
+  - [ ] .specify/templates/spec-template.md
+  - [ ] .specify/templates/tasks-template.md
+  - [ ] .gemini/commands/sp.adr.toml
+  - [ ] .gemini/commands/sp.analyze.toml
+  - [ ] .gemini/commands/sp.checklist.toml
+  - [ ] .gemini/commands/sp.clarify.toml
+  - [ ] .gemini/commands/sp.constitution.toml
+  - [ ] .gemini/commands/sp.git.commit_pr.toml
+  - [ ] .gemini/commands/sp.implement.toml
+  - [ ] .gemini/commands/sp.phr.toml
+  - [ ] .gemini/commands/sp.plan.toml
+  - [ ] .gemini/commands/sp.specify.toml
+  - [ ] .gemini/commands/sp.tasks.toml
+- Follow-up TODOs:
+  - TODO(RATIFICATION_DATE): Set the initial ratification date for this constitution.
+-->
+# Constitution – Spec-Driven Development (Hackathon II: Evolution of Todo)
 
-## Core Principles
+This constitution governs how Phase I of the Todo Application must be designed,
+implemented, and evolved using Spec-Driven Development principles.
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+## Core Rule
+**No code may be written manually.**
+All implementation must be generated through an AI coding agent (Gemini CLI used in this project), strictly following the specifications.
+If the generated code is incorrect, **the spec must be refined**, not the code.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+## Purpose
+To build a clean, maintainable, in-memory Todo Console Application in Python using
+Spec-Driven Development and AI-generated code.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+## System Behavior Principles
+1. The application must fully follow all requirements defined in the specs located in `/specs`.
+2. Specs are the single source of truth.
+3. Code must evolve only through updating specifications—not touching source files manually.
+4. Each feature must have a dedicated specification file.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+## Architectural Principles
+1. Code must be organized inside a `src/` directory.
+2. Code must follow modular, clean-architecture practices.
+3. No external database is allowed in Phase I—tasks must exist **in memory only**.
+4. The application must run as a Python **console/CLI** app.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## AI Agent Instructions
+1. The AI agent must:
+   - Read all spec files before generating or modifying code.
+   - Generate only what the specifications demand.
+   - Produce deterministic, complete, and runnable code.
+   - Follow the folder structure defined in the project.
 
-### [PRINCIPLE_6_NAME]
+2. The AI agent may refactor or overwrite files **only when the spec requires it**.
 
+3. The AI agent must not:
+   - Add features not defined in specs.
+   - Generate unnecessary files.
+   - Modify code or logic not tied to a spec requirement.
 
-[PRINCIPLE__DESCRIPTION]
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Project Structure (Required)
+*TODO: Define the required project structure here. The user input was not specific enough.*
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+Amendments to this constitution require team consensus and must be documented. All development activities must adhere to these principles.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE) | **Last Amended**: 2025-12-06

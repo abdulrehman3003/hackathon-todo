@@ -11,27 +11,26 @@
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
-
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Language/Version**: Python 3.x
+**Primary Dependencies**: None (or as defined in spec)
+**Storage**: In-memory
+**Testing**: pytest
+**Target Platform**: Console/CLI
+**Project Type**: single
+**Performance Goals**: N/A
+**Constraints**: No external database
+**Scale/Scope**: N/A
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **Spec-Driven**: Does this plan adhere to the requirements laid out in the spec?
+- [ ] **Python Console App**: Is the target platform a Python console/CLI application?
+- [ ] **In-Memory Storage**: Does the plan rely only on in-memory data storage (no external databases)?
+- [ ] **`src/` Directory**: Is all source code organized under a `src/` directory?
+- [ ] **Clean Architecture**: Does the proposed structure follow clean-architecture practices?
+- [ ] **Manual Code**: Does this plan require manual coding? (MUST be no)
 
 ## Project Structure
 
