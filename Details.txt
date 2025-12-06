@@ -1,0 +1,40 @@
+
+Subject: The 8-Week Roadmap to World-Class Engineering: 7 Projects, 2 Hackathons, 1 Goal
+
+To: All Faculty and Students
+
+We are dedicating the next two months to an intense professional evolution. Our sole aim is to bridge the gap between outdated development practices and world-class engineering. To get there, we will guide you through a roadmap of seven distinct projects across two consecutive Hackathons.
+
+This is not just about writing code; it is about mastering the future of software—Spec-Driven Development, and Cloud-Native Distributed Systems.
+
+The Roadmap
+You are required to complete Hackathon I immediately, followed directly by Hackathon II.
+
+Hackathon I: The Knowledge Engine (2 Projects)
+Theme: Physical AI & Humanoid Robotics Textbook Your journey begins with mastering Spec-Driven Content Creation. You will use Claude Code and Spec-Kit Plus to architect knowledge.
+
+Project 1: Author an AI-Native Textbook on Physical AI & Humanoid Robotics.
+
+Project 2: Engineer an integrated RAG (Retrieval-Augmented Generation) Chatbot embedded within the book to answer student queries using OpenAI Agents and Vector Databases.
+
+Complete Details:
+https://docs.google.com/document/d/1nw6D37JmTfhPLHo0IfTeCcKajX3Lw9PidDmBjMG1G5o/edit?usp=sharing
+
+Hackathon II: The Evolution of Software (5 Projects)
+Theme: From Console to Cloud-Native AI Once you understand the content, you will master the Architecture of Intelligence by evolving a single application through 5 distinct phases of complexity.
+
+Project 3: In-Memory Python Console App (Spec-Driven).
+
+Project 4: Full-Stack Web Application (Next.js, FastAPI, SQLModel).
+
+Project 5: AI-Powered Chatbot (OpenAI Agents SDK & FastMCP).
+
+Project 6: Local Kubernetes Deployment (Docker, Minikube, Helm, & AIOps).
+
+Project 7: Advanced Cloud Deployment (DigitalOcean K8s, Kafka, & Dapr).
+
+Complete details:
+https://docs.google.com/document/d/1KHxeDNnqG9uew-rEabQc5H8u3VmEN3OaJ_A1ZVVr9vY/edit?usp=sharing
+
+Why This Matters
+The role of the engineer is shifting from "syntax writer" to "system architect". By completing these 7 projects, you will demonstrate mastery over the entire modern stack—from simple console scripts to event-driven, distributed cloud systems governing AI agents.
