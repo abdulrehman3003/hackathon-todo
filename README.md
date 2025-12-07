@@ -49,7 +49,7 @@ The application features a clean, modern, and user-friendly command-line interfa
 
 ## How to Run the Application
 
-**Demo Video:** [Link to Demo Video - Coming Soon!]
+**Demo Video:** [Link to Demo Video](https://youtu.be/gh2BoI_P7U0)
 
 1.  **Clone the repository:**
     ```bash
