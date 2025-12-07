@@ -17,9 +17,9 @@ As a user, I want to add a new task to my to-do list so that I can keep track of
 
 **Acceptance Scenarios**:
 
-1. **Given** I have an empty to-do list, **When** I add a new task with the title "Buy milk" and description "2% fat", **Then** my to-do list should contain one task with the description "Buy milk: 2% fat" and show a success message.
+1. **Given** I have an empty to-do list, **When** I add a new task with the title "Buy milk" and description "2% fat", **Then** my to-do list should contain one task with title "Buy milk" and description "2% fat" and show a success message.
 2. **Given** I have a to-do list with one task, **When** I add another task with the title "Study for exam" and description "Chapter 5", **Then** my to-do list should contain two tasks and show a success message.
-3. **Given** I am in the "Add Task" menu, **When** I enter an empty title, **Then** I should see an error message "Task title cannot be empty."
+3. **Given** I am in the "Add Task" menu, **When** I enter an empty title or an empty description, **Then** I should see an error message "Error: Title and description cannot be empty."
 
 ---
 
@@ -48,7 +48,7 @@ As a user, I want to update the description of a task in my to-do list so that I
 
 **Acceptance Scenarios**:
 
-1. **Given** I have a to-do list with a task (ID: 1, "Buy milk: 2% fat"), **When** I update the task with ID 1 to new title "Buy almond milk" and new description "unsweetened", **Then** my to-do list should contain the task (ID: 1, "Buy almond milk: unsweetened") and show a success message.
+1. **Given** I have a to-do list with a task (ID: 1, title: "Buy milk", description: "2% fat"), **When** I update the task with ID 1 to new title "Buy almond milk" and new description "unsweetened", **Then** my to-do list should contain the task (ID: 1, title: "Buy almond milk", description: "unsweetened") and show a success message.
 2. **Given** I have a to-do list, **When** I try to update a task with a non-existent ID (e.g., 999), **Then** I should see an error message "Error: Task with ID 999 not found.".
 3. **Given** I have a to-do list with a task (ID: 1), **When** I enter an empty new title and empty new description, **Then** I should see an error message "No changes provided. Task not updated.".
 4. **Given** I am in the "Update Task" menu, **When** I enter an invalid task ID (e.g., "abc"), **Then** I should see an error message "Error: Task ID must be an integer.".
@@ -82,7 +82,7 @@ As a user, I want to delete a task from my to-do list so that I can remove tasks
 
 **Acceptance Scenarios**:
 
-1. **Given** I have a to-do list with one task (ID: 1, "Buy milk"), **When** I enter ID 1 and confirm deletion ('y'), **Then** my to-do list should be empty and show a success message "Task 1: 'Buy milk' deleted successfully!".
+1. **Given** I have a to-do list with one task (ID: 1, title: "Buy milk"), **When** I enter ID 1 and confirm deletion ('y'), **Then** my to-do list should be empty and show a success message "Task 1: 'Buy milk' deleted successfully!".
 2. **Given** I have a to-do list with one task (ID: 1, "Buy milk"), **When** I enter ID 1 and cancel deletion ('n'), **Then** the task should still be in the list and show a message "Task deletion cancelled.".
 3. **Given** I have a to-do list, **When** I try to delete a task with a non-existent ID (e.g., 999), **Then** I should see an error message "Error: Task with ID 999 not found.".
 4. **Given** I am in the "Delete Task" menu, **When** I enter an invalid task ID (e.g., "abc"), **Then** I should see an error message "Error: Task ID must be an integer.".
@@ -99,13 +99,14 @@ As a user, I want to delete a task from my to-do list so that I can remove tasks
 - **FR-004**: System MUST allow users to mark a task as complete or incomplete.
 - **FR-005**: System MUST allow users to delete a task.
 - **FR-006**: System MUST handle cases where a user tries to operate on a non-existent task.
-- **FR-007**: System MUST not allow tasks with empty descriptions/titles.
+- **FR-007**: System MUST not allow tasks with an empty title or an empty description.
 
 ### Key Entities *(include if feature involves data)*
 
 - **Task**:
     - `id`: A unique identifier for the task (integer, auto-incrementing).
-    - `description`: The full text of the task (string).
+    - `title`: A concise title for the task (string).
+    - `description`: A detailed description of the task (string).
     - `completed`: A boolean indicating whether the task is complete or not (default: `False`).
 
 ## UI/UX Requirements *(mandatory)*
@@ -154,21 +155,22 @@ Enter your choice: _
 When listing tasks (Menu Option 2), the display MUST be a table-like structure:
 
 ```
-==========================================
+==================================================================
 TASK LIST
-==========================================
-ID   Title                Status
-------------------------------------------
-1    Buy groceries        Pending
-2    Study for exam       Completed
-3    Call Ahmed           Pending
-------------------------------------------
+==================================================================
+ID   Title           Description               Status
+------------------------------------------------------------------
+1    Buy groceries   Get milk and bread        Pending
+2    Study for exam  Chapter 5 on Python       Completed
+3    Call Ahmed      Call about the project    Pending
+------------------------------------------------------------------
 Total tasks: X
 
 Press Enter to return to the main menu..._
 ```
-- **Headers:** "ID", "Title", "Status" MUST be `Yellow`.
-- **Title Truncation:** Task titles (descriptions) longer than 20 characters MUST be truncated to 17 characters followed by "..." (e.g., "Buy groceries for...").
+- **Headers:** "ID", "Title", "Description", "Status" MUST be `Yellow`.
+- **Title Truncation:** Task titles longer than 15 characters MUST be truncated to 12 characters followed by "..." (e.g., "Buy groceri...").
+- **Description Truncation:** Task descriptions longer than 25 characters MUST be truncated to 22 characters followed by "..." (e.g., "Get milk and brea...").
 - **Empty State:** If no tasks exist, "No tasks found." should be displayed where the task list would be.
 
 ### UI-005: Add Task Layout
@@ -181,8 +183,8 @@ ADD NEW TASK
 Enter task title: ________
 Enter description: ________
 ```
-- **Success Message:** "Task [ID]: '[Title]: [Description]' added successfully!" (Green).
-- **Empty Title Error:** "Task title cannot be empty." (Red).
+- **Success Message:** "Task [ID]: '[Title]' added successfully!" (Green).
+- **Empty Input Error:** "Error: Title and description cannot be empty." (Red).
 
 ### UI-006: Update Task Layout
 When updating a task (Menu Option 3), the display MUST be:
@@ -216,7 +218,7 @@ DELETE TASK
 Enter task ID to delete: ____
 Confirm deletion (y/n): _
 ```
-- **Success Message:** "Task [ID]: '[Title]: [Description]' deleted successfully!" (Green).
+- **Success Message:** "Task [ID]: '[Title]' deleted successfully!" (Green).
 - **Cancellation Message:** "Task deletion cancelled." (Yellow).
 - **Non-existent Task Error:** "Error: Task with ID X not found." (Red).
 - **Invalid ID Type Error:** "Error: Task ID must be an integer." (Red).

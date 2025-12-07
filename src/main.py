@@ -6,17 +6,11 @@ import time
 def handle_add_task():
     """Handles the logic for adding a new task."""
     title, description = display_add_task_menu()
-    if title:
-        # The spec requires a description, but the UI provides a title and description.
-        # We will concatenate them for now.
-        full_description = f"{title}: {description}"
-        task = add_task(full_description) # add_task returns None if description is empty, handle this
-        if task:
-            print(Fore.GREEN + f"Task {task.id}: '{task.description}' added successfully!" + Style.RESET_ALL)
-        else:
-            print(Fore.RED + "Error: Task description cannot be empty." + Style.RESET_ALL)
+    task = add_task(title, description)
+    if task:
+        print(Fore.GREEN + f"Task {task.id}: '{task.title}' added successfully!" + Style.RESET_ALL)
     else:
-        print(Fore.RED + "Task title cannot be empty." + Style.RESET_ALL)
+        print(Fore.RED + "Error: Title and description cannot be empty." + Style.RESET_ALL)
     time.sleep(2)
 
 def handle_view_tasks():
@@ -41,17 +35,9 @@ def handle_update_task():
 
         new_title, new_description = display_update_task_menu(task_id)
 
-        final_description = existing_task.description
-        if new_title.strip() or new_description.strip():
-            updated_title = new_title if new_title.strip() else existing_task.description.split(': ')[0] if ': ' in existing_task.description else existing_task.description
-            updated_description = new_description if new_description.strip() else existing_task.description.split(': ')[1] if ': ' in existing_task.description else ""
-            final_description = f"{updated_title}: {updated_description}"
-            
-            task = update_task(task_id, final_description)
-            if task:
-                print(Fore.GREEN + "Task updated successfully!" + Style.RESET_ALL)
-            else:
-                print(Fore.RED + "Error: Could not update task." + Style.RESET_ALL)
+        task = update_task(task_id, new_title, new_description)
+        if task:
+            print(Fore.GREEN + "Task updated successfully!" + Style.RESET_ALL)
         else:
             print(Fore.RED + "No changes provided. Task not updated." + Style.RESET_ALL)
 
@@ -67,7 +53,7 @@ def handle_delete_task():
             task_id = int(task_id_str)
             task = delete_task(task_id)
             if task:
-                print(Fore.GREEN + f"Task {task.id}: '{task.description}' deleted successfully!" + Style.RESET_ALL)
+                print(Fore.GREEN + f"Task {task.id}: '{task.title}' deleted successfully!" + Style.RESET_ALL)
             else:
                 print(Fore.RED + f"Error: Task with ID {task_id} not found." + Style.RESET_ALL)
         except ValueError:

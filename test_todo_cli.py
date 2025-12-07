@@ -28,7 +28,7 @@ class TestTodoCLI(unittest.TestCase):
     def test_main_menu_exit(self, mock_input, mock_stdout):
         main.main()
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
-        self.assert_output_contains(mock_stdout, Fore.CYAN + "TODO APPLICATION" + Style.RESET_ALL)
+        self.assert_output_contains(mock_stdout, "\nTODO APPLICATION\n")
 
     @patch('sys.stdout', new_callable=StringIO)
     @patch('builtins.input', side_effect=['7', '6']) # Invalid choice then exit
@@ -41,37 +41,45 @@ class TestTodoCLI(unittest.TestCase):
     @patch('builtins.input', side_effect=['1', 'Buy milk', '2% fat', '6']) # Add task then exit
     def test_add_task_success(self, mock_input, mock_stdout):
         main.main()
-        self.assert_output_contains(mock_stdout, Fore.GREEN + "Task 1: 'Buy milk: 2% fat' added successfully!" + Style.RESET_ALL)
+        self.assert_output_contains(mock_stdout, Fore.GREEN + "Task 1: 'Buy milk' added successfully!" + Style.RESET_ALL)
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
         self.assertEqual(len(tasks.view_tasks()), 1)
-        self.assertEqual(tasks.view_tasks()[0].description, "Buy milk: 2% fat")
+        self.assertEqual(tasks.view_tasks()[0].title, "Buy milk")
+        self.assertEqual(tasks.view_tasks()[0].description, "2% fat")
 
     @patch('sys.stdout', new_callable=StringIO)
     @patch('builtins.input', side_effect=['1', '', '2% fat', '6']) # Add task with empty title
-    def test_add_task_empty_title(self, mock_input, mock_stdout):
+    def test_add_task_empty_input_title(self, mock_input, mock_stdout):
         main.main()
-        self.assert_output_contains(mock_stdout, Fore.RED + "Task title cannot be empty." + Style.RESET_ALL)
+        self.assert_output_contains(mock_stdout, Fore.RED + "Error: Title and description cannot be empty." + Style.RESET_ALL)
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
         self.assertEqual(len(tasks.view_tasks()), 0)
 
     @patch('sys.stdout', new_callable=StringIO)
-    @patch('builtins.input', side_effect=['2', '6']) # View empty list then exit
+    @patch('builtins.input', side_effect=['1', 'Buy milk', '', '6']) # Add task with empty description
+    def test_add_task_empty_input_description(self, mock_input, mock_stdout):
+        main.main()
+        self.assert_output_contains(mock_stdout, Fore.RED + "Error: Title and description cannot be empty." + Style.RESET_ALL)
+        self.assert_output_contains(mock_stdout, "Exiting Todo application.")
+        self.assertEqual(len(tasks.view_tasks()), 0)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    @patch('builtins.input', side_effect=['2', '', '6']) # View empty list then exit
     def test_view_tasks_empty(self, mock_input, mock_stdout):
         main.main()
         self.assert_output_contains(mock_stdout, "No tasks found.")
         self.assert_output_contains(mock_stdout, "Total tasks: 0")
-        self.assert_output_contains(mock_stdout, "Press Enter to return to the main menu...")
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
 
     @patch('sys.stdout', new_callable=StringIO)
-    @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '1', 'Task Two', 'Desc Two', '2', '', '6']) # Add two tasks, view, then exit
+    @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '1', 'Task Two', 'Desc Two', '2', '', '', '6']) # Add two tasks, view, then exit
     def test_view_tasks_with_items(self, mock_input, mock_stdout):
         main.main()
-        self.assert_output_contains(mock_stdout, "Task 1: 'Task One: Desc One' added successfully!")
-        self.assert_output_contains(mock_stdout, "Task 2: 'Task Two: Desc Two' added successfully!")
-        self.assert_output_contains(mock_stdout, "ID   Title                Status")
-        self.assert_output_contains(mock_stdout, "1    Task One: Desc One   Pending")
-        self.assert_output_contains(mock_stdout, "2    Task Two: Desc Two   Pending")
+        self.assert_output_contains(mock_stdout, "Task 1: 'Task One' added successfully!")
+        self.assert_output_contains(mock_stdout, "Task 2: 'Task Two' added successfully!")
+        self.assert_output_contains(mock_stdout, "ID   Title           Description               Status")
+        self.assert_output_contains(mock_stdout, "1    Task One        Desc One                  Pending")
+        self.assert_output_contains(mock_stdout, "2    Task Two        Desc Two                  Pending")
         self.assert_output_contains(mock_stdout, "Total tasks: 2")
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
 
@@ -79,9 +87,10 @@ class TestTodoCLI(unittest.TestCase):
     @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '3', '1', 'Updated Title', 'Updated Desc', '6']) # Update task
     def test_update_task_success(self, mock_input, mock_stdout):
         main.main()
-        self.assert_output_contains(mock_stdout, "Task 1: 'Task One: Desc One' added successfully!")
+        self.assert_output_contains(mock_stdout, "Task 1: 'Task One' added successfully!")
         self.assert_output_contains(mock_stdout, "Task updated successfully!")
-        self.assertEqual(tasks.view_tasks()[0].description, "Updated Title: Updated Desc")
+        self.assertEqual(tasks.view_tasks()[0].title, "Updated Title")
+        self.assertEqual(tasks.view_tasks()[0].description, "Updated Desc")
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
 
     @patch('sys.stdout', new_callable=StringIO)
@@ -95,9 +104,10 @@ class TestTodoCLI(unittest.TestCase):
     @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '3', '1', '', '', '6']) # Update with empty title/desc
     def test_update_task_empty_input(self, mock_input, mock_stdout):
         main.main()
-        self.assert_output_contains(mock_stdout, "Task 1: 'Task One: Desc One' added successfully!")
+        self.assert_output_contains(mock_stdout, "Task 1: 'Task One' added successfully!")
         self.assert_output_contains(mock_stdout, Fore.RED + "No changes provided. Task not updated." + Style.RESET_ALL)
-        self.assertEqual(tasks.view_tasks()[0].description, "Task One: Desc One")
+        self.assertEqual(tasks.view_tasks()[0].title, "Task One")
+        self.assertEqual(tasks.view_tasks()[0].description, "Desc One")
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
 
     @patch('sys.stdout', new_callable=StringIO)
@@ -111,7 +121,7 @@ class TestTodoCLI(unittest.TestCase):
     @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '5', '1', '6']) # Mark complete
     def test_mark_task_complete_success(self, mock_input, mock_stdout):
         main.main()
-        self.assert_output_contains(mock_stdout, "Task 1: 'Task One: Desc One' added successfully!")
+        self.assert_output_contains(mock_stdout, "Task 1: 'Task One' added successfully!")
         self.assert_output_contains(mock_stdout, Fore.GREEN + "Task 1 marked as complete!" + Style.RESET_ALL)
         self.assertTrue(tasks.view_tasks()[0].completed)
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
@@ -120,6 +130,7 @@ class TestTodoCLI(unittest.TestCase):
     @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '5', '1', '5', '1', '6']) # Mark complete then incomplete
     def test_mark_task_incomplete_success(self, mock_input, mock_stdout):
         main.main()
+        self.assert_output_contains(mock_stdout, "Task 1: 'Task One' added successfully!")
         self.assert_output_contains(mock_stdout, Fore.GREEN + "Task 1 marked as complete!" + Style.RESET_ALL)
         self.assert_output_contains(mock_stdout, Fore.YELLOW + "Task 1 marked as incomplete!" + Style.RESET_ALL)
         self.assertFalse(tasks.view_tasks()[0].completed)
@@ -143,8 +154,8 @@ class TestTodoCLI(unittest.TestCase):
     @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '4', '1', 'y', '6']) # Delete task
     def test_delete_task_success(self, mock_input, mock_stdout):
         main.main()
-        self.assert_output_contains(mock_stdout, "Task 1: 'Task One: Desc One' added successfully!")
-        self.assert_output_contains(mock_stdout, Fore.GREEN + "Task 1: 'Task One: Desc One' deleted successfully!" + Style.RESET_ALL)
+        self.assert_output_contains(mock_stdout, "Task 1: 'Task One' added successfully!")
+        self.assert_output_contains(mock_stdout, Fore.GREEN + "Task 1: 'Task One' deleted successfully!" + Style.RESET_ALL)
         self.assertEqual(len(tasks.view_tasks()), 0)
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
 

@@ -3,6 +3,9 @@
 ## Project Summary
 A simple command-line interface (CLI) application for managing tasks, built using Python. This application allows users to perform basic CRUD (Create, Read, Update, Delete) operations on tasks, along with marking tasks as complete or incomplete, all through an interactive and user-friendly console interface.
 
+## Spec-Driven Development (SDD)
+This project was developed using a Spec-Driven Development (SDD) approach, leveraging a `constitution.md` for core principles, detailed `spec` files for feature requirements, AI-generated code, and comprehensive tests. This methodology ensures strict adherence to defined behaviors, consistent UI/UX, and robust functionality.
+
 ## Phase 1 Features
 
 ### Core Task Operations
@@ -32,6 +35,8 @@ The application features a clean, modern, and user-friendly command-line interfa
 
 ## How to Run the Application
 
+**Demo Video:** [Link to Demo Video - Coming Soon!]
+
 1.  **Clone the repository:**
     ```bash
     git clone <repository-url>
@@ -55,9 +60,29 @@ The application features a clean, modern, and user-friendly command-line interfa
 
     Follow the on-screen menu to interact with the Todo CLI application.
 
-## Development Notes
+## CLI Visuals
+Here are some templates showcasing the CLI's user interface:
 
-*   **`src/main.py`:** Contains the main application loop, handles user input, and orchestrates calls to UI and task management functions.
-*   **`src/ui.py`:** Encapsulates all user interface rendering logic, including menu displays, screen clearing, and formatted output.
-*   **`src/tasks.py`:** Manages the in-memory storage and core CRUD operations for `Task` objects.
-*   **`test_todo_cli.py`:** Unit and integration tests to verify application functionality and UI interactions.
+### Main Menu Layout
+```
+==========================================
+TODO APPLICATION
+==========================================
+Select an option:
+1. Add Task
+2. View All Tasks
+3. Update Task
+4. Delete Task
+5. Mark Complete / Incomplete
+6. Exit
+------------------------------------------
+Enter your choice: _
+```
+
+## Architecture Overview
+The application follows a clear architectural separation of concerns:
+
+*   **`src/main.py`:** Serves as the application's entry point and orchestrator. It manages the main application loop, handles user input for menu navigation, and delegates control to UI functions (`src/ui.py`) for display and task management functions (`src/tasks.py`) for data operations. It also centralizes error handling and success message display.
+*   **`src/ui.py`:** Dedicated to all aspects of the User Interface. This module encapsulates functions for displaying menus, task lists, input prompts, and various messages (success, error, warning). It handles screen clearing and ensures consistent formatting and color usage as defined in the UI/UX requirements.
+*   **`src/tasks.py`:** Responsible for the core business logic related to task management. It defines the `Task` class and provides CRUD (Create, Read, Update, Delete) operations, along with functions to mark tasks as complete/incomplete and find tasks by their ID. It operates on an in-memory list of `Task` objects.
+*   **`test_todo_cli.py`:** Contains comprehensive unit and integration tests to verify the correct functionality of the CLI application, ensuring adherence to the specified behaviors and UI interactions.
