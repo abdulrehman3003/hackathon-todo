@@ -4,7 +4,7 @@
 A simple command-line interface (CLI) application for managing tasks, built using Python. This application allows users to perform basic CRUD (Create, Read, Update, Delete) operations on tasks, along with marking tasks as complete or incomplete, all through an interactive and user-friendly console interface.
 
 ## Spec-Driven Development (SDD)
-This project was developed using a Spec-Driven Development (SDD) approach, leveraging a `constitution.md` for core principles, detailed `spec` files for feature requirements, AI-generated code, and comprehensive tests. This methodology ensures strict adherence to defined behaviors, consistent UI/UX, and robust functionality.
+This project was developed using a Spec-Driven Development (SDD) approach, leveraging a `constitution.md` for core principles, detailed `spec` files for feature requirements, AI-generated code, and comprehensive tests. This methodology ensures strict adherence to defined behaviors, consistent UI/UX, and robust functionality. You can trace the evolution of the project's specifications through `specs_history/`, demonstrating iterative refinement from basic requirements to a comprehensive final spec.
 
 ## Phase 1 Features
 

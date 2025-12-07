@@ -72,14 +72,16 @@ class TestTodoCLI(unittest.TestCase):
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
 
     @patch('sys.stdout', new_callable=StringIO)
-    @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '1', 'Task Two', 'Desc Two', '2', '', '', '6']) # Add two tasks, view, then exit
+    @patch('builtins.input', side_effect=['1', 'Task One', 'Desc One', '1', 'Task Two', 'This is a very long description that should wrap around multiple lines in the display table.', '2', '', '', '6']) # Add two tasks, view, then exit
     def test_view_tasks_with_items(self, mock_input, mock_stdout):
         main.main()
         self.assert_output_contains(mock_stdout, "Task 1: 'Task One' added successfully!")
         self.assert_output_contains(mock_stdout, "Task 2: 'Task Two' added successfully!")
-        self.assert_output_contains(mock_stdout, "ID   Title           Description               Status")
-        self.assert_output_contains(mock_stdout, "1    Task One        Desc One                  Pending")
-        self.assert_output_contains(mock_stdout, "2    Task Two        Desc Two                  Pending")
+        self.assert_output_contains(mock_stdout, Fore.YELLOW + "ID   Title           Description                           Status" + Style.RESET_ALL)
+        self.assert_output_contains(mock_stdout, "1      Task One          Desc One                                   Pending   ")
+        self.assert_output_contains(mock_stdout, "2      Task Two          This is a very long description that       Pending   ")
+        self.assert_output_contains(mock_stdout, "                         should wrap around multiple lines in the")
+        self.assert_output_contains(mock_stdout, "                         display table.                          ")
         self.assert_output_contains(mock_stdout, "Total tasks: 2")
         self.assert_output_contains(mock_stdout, "Exiting Todo application.")
 
