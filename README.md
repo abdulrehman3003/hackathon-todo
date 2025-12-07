@@ -157,7 +157,7 @@ Tests are designed to cover:
 We welcome contributions to this project! If you'd like to contribute, please follow these steps:
 1.  Fork the repository.
 2.  Create a new branch for your feature or bug fix.
-3.  Make your changes and ensure they adhere to the project's coding standards.
+3.  Make your changes and ensure they adhere to the project's coding standards.  
 4.  Write or update tests to cover your changes.
 5.  Submit a pull request with a clear description of your changes.
 
@@ -165,4 +165,4 @@ We welcome contributions to this project! If you'd like to contribute, please fo
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact/Support
-For any questions, issues, or support, please open an issue on the [GitHub repository](https://github.com/your-username/your-repository/issues) or contact [your-email@example.com](mailto:your-email@example.com).
+For any questions, issues, or support, please open an issue on the [GitHub repository](https://github.com/abdulrehman3003/hackathon-todo/issues) or contact [abdul_rehman2006@outlook.com](mailto:abdul_rehman2006@outlook.com).
