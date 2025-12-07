@@ -38,7 +38,7 @@ def display_add_task_menu():
     return title, description
 
 def display_tasks(tasks):
-    """Displays a list of tasks in a table format with multi-line description wrapping."""
+    """Displays a list of tasks in a table format with multi-line title and description wrapping."""
     clear_screen()
     print(Fore.CYAN + "================================================================================")
     print("TASK LIST")
@@ -46,30 +46,27 @@ def display_tasks(tasks):
     if not tasks:
         print("No tasks found.")
     else:
-        print(Fore.YELLOW + "ID   Title           Description                           Status" + Style.RESET_ALL)
-        print("--------------------------------------------------------------------------------")
+        # Adjusted header to exactly 80 chars
+        print(Fore.YELLOW + "ID     Title                       Description                      Status  " + Style.RESET_ALL) 
+        print("--------------------------------------------------------------------------------") # Ruler updated to 80 chars
         for task in tasks:
             status = "Completed" if task.completed else "Pending"
             
-            # Truncate title or pad to 15 characters
-            title_display = (task.title[:12] + '...') if len(task.title) > 15 else task.title.ljust(15)
+            wrapped_title = textwrap.wrap(task.title, width=25)
+            wrapped_description = textwrap.wrap(task.description, width=30)
+            
+            max_lines = max(len(wrapped_title), len(wrapped_description))
+            
+            for i in range(max_lines):
+                id_part = str(task.id) if i == 0 else ''
+                status_part = status if i == 0 else ''
 
-            wrapped_description = textwrap.wrap(task.description, width=40)
-            
-            
-            # Print the first line of the task with ID, Title, first part of Description, and Status
-            # ID (7) + Title (18) + Description (43) + Status (10) = 78
-            # The extra space in the original output seems to come from the default padding of print
-            # Let's align to 78 characters for internal content, and rely on external rules for total line length.
-            
-            first_line_desc = wrapped_description[0].ljust(43) if wrapped_description else ''.ljust(43)
-            
-            print(f"{task.id:<7}{title_display:<18}{first_line_desc}{status:<10}")
-
-            # Print subsequent lines of the description, indented
-            for line in wrapped_description[1:]:
-                # Indentation for subsequent description lines: 7 (ID) + 18 (Title) = 25 spaces
-                print(f"{'':<25}{line:<43}")
+                title_part = wrapped_title[i] if i < len(wrapped_title) else ''
+                description_part = wrapped_description[i] if i < len(wrapped_description) else ''
+                
+                # Format each part to its column width
+                # Total line length: 4 (ID) + 3 (space) + 25 (Title) + 3 (space) + 30 (Description) + 3 (space) + 10 (Status) + 2 (trailing space) = 80 chars
+                print(f"{id_part:<4}   {title_part:<25}   {description_part:<30}   {status_part:<10}  ")
     print("--------------------------------------------------------------------------------")
     print(f"Total tasks: {len(tasks)}")
     input("\nPress Enter to return to the main menu...")

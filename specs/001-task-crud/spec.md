@@ -158,22 +158,24 @@ When listing tasks (Menu Option 2), the display MUST be a table-like structure:
 ================================================================================
 TASK LIST
 ================================================================================
-ID   Title           Description                           Status
+ID   Title                     Description                    Status
 --------------------------------------------------------------------------------
-1    Buy groceries   Get milk and bread, also check for    Pending
-                     special offers.
-2    Study for exam  Chapter 5 on Python programming       Completed
-                     for the upcoming test.
-3    Call Ahmed      Call about the project status and     Pending
-                     team meeting schedule.
+1    Buy groceries for the     Get milk and bread, also       Pending
+     week                      check for special offers.
+2    Study for the Python      Chapter 5 on Python            Completed
+     programming exam          programming for the upcoming
+                               test.
+3    Call Ahmed about the      Call about the project         Pending
+     project status            status and team meeting
+                               schedule.
 --------------------------------------------------------------------------------
 Total tasks: X
 
 Press Enter to return to the main menu..._
 ```
 - **Headers:** "ID", "Title", "Description", "Status" MUST be `Yellow`.
-- **Title Truncation:** Task titles longer than 15 characters MUST be truncated to 12 characters followed by "..." (e.g., "Buy groceri...").
-- **Description Wrapping:** Task descriptions will be displayed within a fixed column width of 40 characters. If a description exceeds this width, it MUST wrap to the next line(s) within the description column. The lines of a wrapped description MUST be indented to align with the start of the description text in the header.
+- **Title Wrapping:** Task titles will be displayed within a fixed column width of 25 characters. If a title exceeds this width, it MUST wrap to the next line(s) within the title column. The lines of a wrapped title MUST be indented to align with the start of the title text in the header.
+- **Description Wrapping:** Task descriptions will be displayed within a fixed column width of 30 characters. If a description exceeds this width, it MUST wrap to the next line(s) within the description column. The lines of a wrapped description MUST be indented to align with the start of the description text in the header.
 - **Empty State:** If no tasks exist, "No tasks found." should be displayed where the task list would be.
 
 ### UI-005: Add Task Layout
