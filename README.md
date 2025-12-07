@@ -13,7 +13,6 @@
 - [Architecture Overview](#architecture-overview)
 - [Testing](#testing)
 - [Contributing](#contributing)
-- [License](#license)
 - [Contact/Support](#contactsupport)
 
 ## Project Summary
@@ -160,9 +159,6 @@ We welcome contributions to this project! If you'd like to contribute, please fo
 3.  Make your changes and ensure they adhere to the project's coding standards.  
 4.  Write or update tests to cover your changes.
 5.  Submit a pull request with a clear description of your changes.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact/Support
 For any questions, issues, or support, please open an issue on the [GitHub repository](https://github.com/abdulrehman3003/hackathon-todo/issues) or contact [abdul_rehman2006@outlook.com](mailto:abdul_rehman2006@outlook.com).
