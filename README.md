@@ -53,7 +53,7 @@ The application features a clean, modern, and user-friendly command-line interfa
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
+    git clone [https://github.com/abdulrehman3003/hackathon-todo.git](https://github.com/abdulrehman3003/hackathon-todo.git)
     cd hackathon-todo
     ```
 2.  **Create and activate a virtual environment using `uv`:**
