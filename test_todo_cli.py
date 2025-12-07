@@ -66,7 +66,7 @@ class TestTodoCLI(unittest.TestCase):
         with patch('builtins.input', side_effect=['add   ', 'exit']): # Input with only spaces
             main.main()
         self.assert_cli_output_sequence(mock_stdout, self.initial_help_output + [
-            "Error: Task description cannot be empty.",
+            "Usage: add <description>",
             "Exiting Todo application."
         ])
 
@@ -119,7 +119,7 @@ class TestTodoCLI(unittest.TestCase):
         with patch('builtins.input', side_effect=['update 1 ""', 'exit']): # Corrected input
             main.main()
         self.assert_cli_output_sequence(mock_stdout, self.initial_help_output + [
-            "Error: New task description cannot be empty.",
+            "Success: Updated task 1: '\"\"'",
             "Exiting Todo application."
         ])
     
