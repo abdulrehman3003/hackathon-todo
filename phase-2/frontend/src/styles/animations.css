@@ -1,0 +1,27 @@
+/* Keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Apply transitions to interactive elements */
+/* This is a general rule, component-specific transitions can override */
+button, a, input, select, textarea {
+  transition: transform 160ms ease, opacity 200ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}

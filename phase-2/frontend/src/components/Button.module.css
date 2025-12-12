@@ -1,0 +1,67 @@
+.button {
+  --button-height: 40px;
+  --button-padding-x: var(--gap);
+  --button-border-radius: var(--radius);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--button-height);
+  padding: 0 var(--button-padding-x);
+  border: none;
+  border-radius: var(--button-border-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, color 160ms ease;
+  user-select: none;
+  text-decoration: none; /* For links styled as buttons */
+}
+
+.button:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Variants */
+.primary {
+  background-color: var(--primary);
+  color: var(--bg); /* Use --bg for contrast */
+}
+
+.secondary {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--muted);
+}
+.secondary:hover:not(:disabled) {
+    background-color: var(--muted);
+    color: var(--bg);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--primary);
+}
+.ghost:hover:not(:disabled) {
+    background-color: rgba(var(--primary-rgb), 0.1); /* Assuming primary has an rgb var or calculate */
+}
+
+.danger {
+  background-color: var(--danger);
+  color: var(--bg);
+}

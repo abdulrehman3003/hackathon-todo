@@ -1,0 +1,61 @@
+.inputGroup {
+  margin-bottom: var(--gap);
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: calc(var(--gap) / 4);
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--muted);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  color: var(--text);
+  background-color: var(--surface);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  box-sizing: border-box; /* Ensure padding doesn't increase width */
+}
+
+.textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb-alpha), 0.25); /* Assuming --primary-rgb-alpha is defined or calculated */
+}
+
+.input.errorBorder, .textarea.errorBorder {
+  border-color: var(--danger);
+}
+
+.errorMessage {
+  color: var(--danger);
+  font-size: 0.8rem;
+  margin-top: calc(var(--gap) / 4);
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+}

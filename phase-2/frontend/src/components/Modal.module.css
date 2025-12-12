@@ -1,0 +1,54 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.modalContent {
+  background-color: var(--bg);
+  border-radius: var(--radius);
+  padding: var(--gap);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: var(--shadow-sm);
+  animation: slideUp 0.3s ease-out forwards;
+  position: relative; /* For close button positioning */
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--gap);
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: var(--text);
+}
+
+.modalBody {
+  /* Additional styling for body content if needed */
+}

@@ -1,0 +1,12 @@
+.taskList {
+  margin-top: var(--gap);
+  display: grid;
+  gap: var(--gap-half, calc(var(--gap) / 2));
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--gap-double, calc(var(--gap) * 2));
+  color: var(--muted);
+  font-style: italic;
+}

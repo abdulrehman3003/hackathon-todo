@@ -1,0 +1,72 @@
+.sidebar {
+  width: 240px;
+  background-color: var(--surface);
+  padding: var(--gap);
+  border-right: 1px solid var(--muted);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes logout to bottom */
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: var(--gap);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Allows nav items to take space */
+}
+
+.navItem {
+  display: block;
+  padding: 10px 15px;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: var(--radius);
+  margin-bottom: 5px;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
+
+.navItem:hover {
+  background-color: var(--muted);
+  color: var(--bg);
+}
+
+.navItem.active {
+  background-color: var(--primary);
+  color: var(--bg);
+}
+
+.navItem.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--primary); /* Accent bar */
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+}
+
+.logoutButton {
+    width: 100%;
+    margin-top: var(--gap); /* Space between nav and logout */
+    color: var(--danger);
+    justify-content: flex-start;
+    padding: 10px 15px;
+}
+.logoutButton:hover {
+    background-color: rgba(var(--danger-rgb), 0.1); /* Assuming danger-rgb exists or calculate */
+    color: var(--danger);
+}

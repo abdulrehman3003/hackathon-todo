@@ -1,0 +1,44 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--gap) var(--gap-double, calc(var(--gap) * 2)); /* Increased padding for main content */
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--muted);
+  position: sticky; /* Make it sticky */
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.appTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-half, calc(var(--gap) / 2));
+}
+
+.userEmail {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-right: var(--gap-half, calc(var(--gap) / 2));
+}
+
+/* Specific styling for the Add Task button in the Navbar for desktop */
+.addTaskButton {
+    display: none; /* Hidden by default */
+}
+
+/* Media query for desktop size */
+@media (min-width: 1024px) {
+  .addTaskButton {
+    display: inline-flex; /* Show on desktop */
+  }
+}
